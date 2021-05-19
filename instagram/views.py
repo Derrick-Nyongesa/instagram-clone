@@ -38,8 +38,9 @@ def index(request):
    
     #return render(request, 'profile.html', {'images':images, 'profile':profile})
 def profile(request, username):
-    current_user = request.user
-    images = Image.objects.all().filter(profile_id=current_user.id)
+    #current_user = request.user
+    #images = Image.objects.all().filter(profile_id=current_user.id)
+    images = request.user.posts.all()
     if request.method == 'POST':
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if prof_form.is_valid():
@@ -48,7 +49,7 @@ def profile(request, username):
     else:
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
     params = {
-        'prof_form': prof_form,
+        'form': prof_form,
         'images': images,
 
     }

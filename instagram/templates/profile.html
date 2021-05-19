@@ -47,7 +47,11 @@
         <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-md ">
                 <div class="modal-content">
-                    
+                    <form action="" method="post" enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
+                        {% csrf_token%}
+                        {% bootstrap_form form%}
+                        <button type="submit" class="btn btn-primary btn-sm"> Update Profile</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -55,13 +59,11 @@
     <hr class="mt-4">
     <div class="card-columns">
         {% for image in images %}
-            <div class="card">
-                <div class="card-body">
-                    <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
-                    <p id="overlay"class="text"> 
-                            <i class="fas fa-heart" style="color:white; font-size: 18"></i> 
-                            <span style="color: white">{{image.likes.count}}</span>
-                             <i class="fas fa-comment ml-4" style="color: white"></i> <span style="color: white">{{image.comments.count}}</span></p>
+            <d
+            iv class="">
+                <div class="">
+                    <img src="{{image.image.url}}" alt="{{image.caption}}">
+                   
                     
                 </div>
             </div>
