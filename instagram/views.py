@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Image,Profile,Comment
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
-from .forms import PostForm
+from .forms import PostForm, UpdateUserForm, UpdateUserProfileForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -47,4 +47,4 @@ def profile(request, username):
         'images': images,
 
     }
-    return render(request, 'instagram/profile.html', params)
+    return render(request, 'profile.html', params)
