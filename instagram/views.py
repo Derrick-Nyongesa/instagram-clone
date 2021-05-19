@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Image,Profile,Comment
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
+from .forms import PostForm
 
 # Create your views here.
 def index(request):
