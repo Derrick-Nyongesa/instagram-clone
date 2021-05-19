@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <img class="rounded-circle account-img" src="{{ user_prof.profile.profile_picture.url }}">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <span class="mr-3 text-secondary username">{{ user_prof.username }}</span>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        {% for image in user_posts %}
+        <img src="{{image.image.url}}" alt="{{image.caption}}" class="card-img">
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
