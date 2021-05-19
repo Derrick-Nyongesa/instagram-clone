@@ -41,17 +41,13 @@ def profile(request, username):
     current_user = request.user
     images = Image.objects.all().filter(profile_id=current_user.id)
     if request.method == 'POST':
-        user_form = UpdateUserForm(request.POST, instance=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if user_form.is_valid() and prof_form.is_valid():
-            user_form.save()
+        if prof_form.is_valid():
             prof_form.save()
             return HttpResponseRedirect(request.path_info)
     else:
-        user_form = UpdateUserForm(instance=request.user)
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
     params = {
-        'user_form': user_form,
         'prof_form': prof_form,
         'images': images,
 
