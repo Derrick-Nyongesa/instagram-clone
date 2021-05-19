@@ -15,7 +15,7 @@ def index(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user = request.user.profile
+            post.user = request.user
             post.save()
             
             return HttpResponseRedirect(request.path_info)
@@ -31,11 +31,48 @@ def index(request):
 
 
 @login_required(login_url='login')
+#def profile(request, username):
+    #current_user = request.user
+    #profile = Profile.objects.get_or_create(user_id=current_user.id)
+    #images = Image.objects.all().filter(profile_id=current_user.id)
+   
+    #return render(request, 'profile.html', {'images':images, 'profile':profile})
 def profile(request, username):
     current_user = request.user
-    profile = Profile.objects.get_or_create(user_id=current_user.id)
     images = Image.objects.all().filter(profile_id=current_user.id)
-   
-    return render(request, 'profile.html', {'images':images, 'profile':profile})
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and prof_form.is_valid():
+            user_form.save()
+            prof_form.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        user_form = UpdateUserForm(instance=request.user)
+        prof_form = UpdateUserProfileForm(instance=request.user.profile)
+    params = {
+        'user_form': user_form,
+        'prof_form': prof_form,
+        'images': images,
+
+    }
+    return render(request, 'profile.html', params)
+
+
+@login_required(login_url='/accounts/login/')
+def new_status(request, username):
+    current_user = request.user
+    username = current_user.username
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save()
+            image.user = request.user
+            image.save()
+        return redirect('homePage')
+    else:
+        form = PostForm()
+    return render(request, 'new_status.html', {"form": form})
+
 
 

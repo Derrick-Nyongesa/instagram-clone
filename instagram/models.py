@@ -39,8 +39,21 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/',default='DEFAULT VALUE')
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default='', related_name='images')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,  null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+       ordering = ['-date_created']
+
+
+    def save_image(self):
+        self.save()
+
+    @classmethod
+    def get_image_by_id(cls, image_id):
+        images = cls.objects.get(id=image_id)
+        return images
 
     def __str__(self):
         return f'{self.user.name} Image'
