@@ -55,6 +55,11 @@ class Image(models.Model):
         images = cls.objects.get(id=image_id)
         return images
 
+
+    @property
+    def get_all_comments(self):
+        return self.comments.all()
+
     def __str__(self):
         return f'{self.user.name} Image'
 
@@ -66,4 +71,7 @@ class Comment(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f'{self.user.name} Post'
+        return f'{self.user.name} Image'
+
+    class Meta:
+        ordering = ["-pk"]
