@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.index, name='homePage'),
     path('profile/<username>/', views.profile, name='profile'),
-    #path('user_profile/<username>/', views.user_profile, name='user_profile'),
+    path('user_profile/<username>/', views.user_profile, name='user_profile'),
     path('new/status/<username>', views.new_status, name='newStatus')
 ]
 if settings.DEBUG:
