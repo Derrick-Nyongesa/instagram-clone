@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_photo = models.ImageField(upload_to='profile_pics/', default='DEFAULT VALUE')
+    profile_photo = models.ImageField(upload_to='profile_pics/', default='default.png')
     bio = models.TextField(max_length=300, default="My Bio", blank=True)
     name = models.CharField(blank=True, max_length=120)
     

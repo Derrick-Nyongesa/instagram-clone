@@ -40,7 +40,7 @@
             {% for image in images %}
             <div class="card mb-4">
                 <div class="card-title">
-                    <img src="{{image.user.profile_photo.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
+                    <img src="{{image.user.profile.profile_photo.url}}" class="img-circle border ml-3 mt-2  mr-3"
                          alt="{{image.user.user.username}}" width="35" height="35">
                     <a href="" class="mt-4 user">{{image.user.username|title}}</a>
                 </div>
@@ -79,7 +79,7 @@
         <div class="col-md-4 mt-4 userinfo">
             <div class="row">
                 <div class="col-md-3 ml-2">
-                    <img class="rounded-circle user-img" src="{{ user.profile.profile_picture.url }}">
+                    <img class="img-circle user-img" src="{{ user.profile.profile_photo.url }}" width="45px" height="45px">
                 </div>
                 <div class="col-md-6 mt-4 user-detail">
                     <span class=" text-secondary"><a
@@ -95,7 +95,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-2 mr-3 mt-1 mb-2">
-                                    <img class="rounded-circle" src="{{ user.profile.profile_picture.url }}"
+                                    <img class="img-circle" src="{{ user.profile.profile_photo.url }}"
                                          width="45px" height="45px">
                                 </div>
                                 <div class="col-md-6 mr-2 mt-2">
