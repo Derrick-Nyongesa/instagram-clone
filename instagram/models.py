@@ -2,11 +2,13 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_photo = models.ImageField(upload_to='profile_pics/', default='default.png')
+    #profile_photo = models.ImageField(upload_to='profile_pics/', default='default.png')
+    profile_photo = CloudinaryField('image',null=True, default='default.png')
     bio = models.TextField(max_length=300, default="My Bio", blank=True)
     name = models.CharField(blank=True, max_length=120)
     
@@ -36,7 +38,8 @@ class Profile(models.Model):
     
 
 class Image(models.Model):
-    image = models.ImageField(upload_to='images/',default='DEFAULT VALUE')
+    #image = models.ImageField(upload_to='images/',default='DEFAULT VALUE')
+    image = CloudinaryField('image',null=True)
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE,  null=True, related_name='posts')
