@@ -50,6 +50,9 @@ class Image(models.Model):
     def save_image(self):
         self.save()
 
+    def delete_image(self):
+        self.delete()
+
     @classmethod
     def get_image_by_id(cls, image_id):
         images = cls.objects.get(id=image_id)
