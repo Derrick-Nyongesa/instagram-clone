@@ -10,6 +10,8 @@ urlpatterns = [
     path('new/status/<username>', views.new_status, name='newStatus'),
     path('post/<id>', views.post_comment, name='comment'),
     path('search/', views.search_profile, name='search'),
+    path('unfollow/<to_unfollow>', views.unfollow, name='unfollow'),
+    path('follow/<to_follow>', views.follow, name='follow')
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
