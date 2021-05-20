@@ -99,7 +99,7 @@ def post_comment(request, id):
         if form.is_valid():
             savecomment = form.save(commit=False)
             savecomment.post = image
-            savecomment.user = request.user.profile
+            savecomment.user = request.user
             savecomment.save()
             return HttpResponseRedirect(request.path_info)
     else:
