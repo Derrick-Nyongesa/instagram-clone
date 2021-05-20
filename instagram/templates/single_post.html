@@ -12,7 +12,8 @@
             <div class="col-md-3 mt-2">
                 <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
                      alt="{{image.user.user.username}}" width="35" height="35">
-                
+                     <a href="{% url 'user_profile' image.user.username %}" class="mt-4 user">{{image.user.username | title}}</a>
+                     <p>{{image.caption}}</p>
 
                 <hr style="width:96%">
                 {% for comment in image.comments.all %}
