@@ -4,6 +4,8 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth.models import User
 from .forms import PostForm, UpdateUserForm, UpdateUserProfileForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+from django.views.generic.detail import DetailView
 
 
 # Create your views here.
@@ -101,7 +103,9 @@ def user_profile(request, username):
 @login_required(login_url='login')
 def post_comment(request, id):
     image = get_object_or_404(Image, pk=id)
-    
+    is_liked = False
+    if image.likes.filter(id=request.user.id).exists():
+        is_liked = True
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -115,7 +119,8 @@ def post_comment(request, id):
     params = {
         'image': image,
         'form': form,
-        
+        'is_liked': is_liked,
+        'total_likes': image.total_likes()
     }
     return render(request, 'single_post.html', params)
 
@@ -152,6 +157,17 @@ def follow(request, to_follow):
         follow_s = Follow(follower=request.user.profile, followed=user_profile3)
         follow_s.save()
         return redirect('user_profile', user_profile3.user.username)
+
+
+@login_required (login_url='/accounts/register/')
+def like_post(request, id):
+    image = Image.objects.get(id=id)
+    image.likes = image.likes + 1
+    image.save()
+    return redirect('index')
+
+
+
 
 
 

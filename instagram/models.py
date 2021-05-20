@@ -42,6 +42,7 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE,  null=True, related_name='posts')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='posts')
+    likes = models.ManyToManyField(User, related_name='likes', blank=True, )
 
     class Meta:
        ordering = ['-date_created']
@@ -62,6 +63,10 @@ class Image(models.Model):
     @property
     def get_all_comments(self):
         return self.comments.all()
+
+    def total_likes(self):
+        return self.likes.count()
+
 
     def __str__(self):
         return f'{self.user.name} Image'
