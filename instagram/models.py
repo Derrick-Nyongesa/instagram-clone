@@ -51,6 +51,10 @@ class Image(models.Model):
     class Meta:
        ordering = ['-date_created']
 
+    @property
+    def get_all_comments(self):
+        return self.comments.all()
+
 
     def save_image(self):
         self.save()
@@ -87,6 +91,19 @@ class Image(models.Model):
 
     #class Meta:
         #ordering = ["-pk"]
+
+
+class Comment(models.Model):
+    image = models.ForeignKey(Image, on_delete=models.CASCADE,null=True, related_name='comments')
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,null=True, related_name='comments')
+    comment = models.TextField()
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering = ['-date_created']
+
+    def __str__(self):
+        return f'{self.user.name} Image'
 
 
 class Follow(models.Model):
