@@ -29,6 +29,7 @@ def index(request):
         'users': users,
 
     }
+    
     return render(request, 'index.html', params)
 
 

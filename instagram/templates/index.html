@@ -23,7 +23,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="post" enctype="multipart/form-data" novalidate>
+                                <form action="{% url 'homePage' %}" method="post" enctype="multipart/form-data" novalidate>
                                     {% csrf_token %}
                                     {% bootstrap_form form%}
                                     <button class="btn btn-sm btn-success">Upload</button>
