@@ -75,17 +75,17 @@ class Image(models.Model):
         return f'{self.user.name} Image'
 
 
-class Comment(models.Model):
-    comment = models.TextField()
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
-    date_created = models.DateTimeField(auto_now_add=True, null=True)
+#class Comment(models.Model):
+    #comment = models.TextField()
+    #image = models.ForeignKey(Image, on_delete=models.CASCADE,default='', related_name='comments')
+    #profile = models.ForeignKey(Profile, on_delete=models.CASCADE,default='', related_name='comments')
+    #date_created = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return f'{self.user.name} Image'
+    #def __str__(self):
+        #return f'{self.user.name} Image'
 
-    class Meta:
-        ordering = ["-pk"]
+    #class Meta:
+        #ordering = ["-pk"]
 
 
 class Follow(models.Model):

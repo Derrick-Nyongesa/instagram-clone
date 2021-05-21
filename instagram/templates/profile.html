@@ -10,16 +10,16 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-3">
-                        <img class="img-circle account-img" src="{{ user.profile.profile_photo.url }}" width="95" height="95">
+                        {% cloudinary user.profile.profile_photo format="jpg" width=180 height=180 crop="fill" %}
                     </div>
                     <div class="col-md-6 mt-3">
                         <div class="media-body">
                             <div class="account-heading"><span class="mr-3 text-secondary username">{{ user.username }}</span>
-                                <a class="btn btn-sm btn-primary mr-3" data-toggle="modal" data-target=".bd-example-modal-md"><strong>Edit Profile</strong></a>
-                                <a class="mt-3" data-toggle="modal" data-target="#ModalCenter"><span class="glyphicon glyphicon-cog"></span></i></a>
+                                <a class="btn btn-sm btn-primary mr-3 " data-toggle="modal" data-target=".bd-example-modal-md"><strong>Edit Profile</strong></a>
+                                <a class="mt-3" data-toggle="modal" data-target="#ModalCenter"><span class="glyphicon glyphicon-cog iconns"></span></a>
                             </div>
 
-                            <div class="post-details mt-3 mb-3">
+                            <div class="post-details mt-3 mb-3 post">
                                 <span class="mr-5"><strong>{{images.count}}</strong> Posts</span>
                                 <span class="mr-5"> <strong>{{ user.profile.followers.count }}</strong> followers</span>
                                 <span class="mr-5"> <strong>{{ user.profile.following.count }}</strong> following</span>
