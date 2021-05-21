@@ -49,14 +49,14 @@
                        {% cloudinary image.image format="jpg" width=680 height=440 crop="fill" %}
                       
                   </div></a>
-                  <span class="ml-4 mb-1"><strong>{{image.likes.count}} like{{image.likes.count|pluralize}}</strong></span>
+                  <span class="ml-4 mb-1"><strong>{{image.likes}} Likes</strong></span>
                   <div class="caption"><p><strong>{{image.user.username|title}}</strong> {{image.caption}}</p></div>
               </div>
                 
                 <div class="iconic ml-2">
-                    <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}">
-                        <a href=""><span class="glyphicon glyphicon-heart-empty iconns"></span></a>
-                    </button>
+                    
+                        <a href="{% url 'singleImageLike' image.id%}"><span class="glyphicon glyphicon-heart-empty iconns"></span></a>
+                    
                     <button class="btn btn-sm" type="submit"><a href=""><span class="glyphicon glyphicon-comment iconns"></span>
                     </a></button>
                 </div>

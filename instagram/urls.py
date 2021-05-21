@@ -3,6 +3,8 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.conf.urls import url
+
 urlpatterns = [
     path('', views.index, name='homePage'),
     path('profile/<username>/', views.profile, name='profile'),
@@ -15,6 +17,9 @@ urlpatterns = [
     #path('post/<id>/like', PostLikeToggle.as_view(), name='liked'),
     #path('api/post/<id>/like', PostLikeAPIToggle.as_view(), name='liked-api'),
     path('like', views.like_post, name='like_post'),
+
+    #url(r'^single_image/likes/(\d+)', views.single_image_like, name='singleImageLike'),
+    path('single_image/likes/<id>', views.single_image_like, name='singleImageLike'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

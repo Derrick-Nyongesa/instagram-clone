@@ -45,7 +45,8 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE,  null=True, related_name='posts')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='posts')
-    likes = models.ManyToManyField(User, related_name='likes', blank=True, )
+    #likes = models.ManyToManyField(User, related_name='likes', blank=True, )
+    likes = models.IntegerField(default=0)
 
     class Meta:
        ordering = ['-date_created']
