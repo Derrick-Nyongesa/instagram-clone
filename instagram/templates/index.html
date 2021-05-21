@@ -55,10 +55,13 @@
                 
                 <div class="iconic ml-2">
                     
-                        <a href="{% url 'singleImageLike' image.id%}"><span class="glyphicon glyphicon-heart-empty iconns"></span></a>
+                        
+                        <a href="{% url 'singleImageLike' image.id%}" class="btn btn-danger btn-lg">
+                            <span class="glyphicon glyphicon-heart"></span> Like 
+                          </a>
                     
-                    <button class="btn btn-sm" type="submit"><a href=""><span class="glyphicon glyphicon-comment iconns"></span>
-                    </a></button>
+                    <a href="{% url 'comment' image.id %}" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-comment iconns"></span>
+                    </a>
                 </div>
                 
                 <span class="text-secondary ml-4 viewall"><a href="{% url 'comment' image.id %}" class="viewall">view all {{image.comments.count}} comment{{image.comments.count|pluralize}}</a></span>

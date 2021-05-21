@@ -1,3 +1,4 @@
+from instagram.email import send_welcome_email
 from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
@@ -20,6 +21,7 @@ class Profile(models.Model):
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
+            send_welcome_email(instance.username, instance.email)
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
@@ -35,7 +37,9 @@ class Profile(models.Model):
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
 
-    
+    @property
+    def username(self):
+        return self.user.username
 
 class Image(models.Model):
     #image = models.ImageField(upload_to='images/',default='DEFAULT VALUE')
@@ -77,7 +81,7 @@ class Image(models.Model):
 
 
     def __str__(self):
-        return f'{self.user.name} Image'
+        return f'{self.user.username if self.user else self.name} Image'
 
 
 #class Comment(models.Model):
@@ -95,15 +99,15 @@ class Image(models.Model):
 
 class Comment(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE,null=True, related_name='comments')
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE,null=True, related_name='comments')
     comment = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='comments')
 
     class Meta:
         ordering = ['-date_created']
 
     def __str__(self):
-        return f'{self.user.name} Image'
+        return f'{self.comment} Image'
 
 
 class Follow(models.Model):
