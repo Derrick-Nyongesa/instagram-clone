@@ -17,7 +17,7 @@
                             <div class="account-heading">
                                 <span class="mr-3 text-secondary username">{{ user_prof.username }}</span>
                                 {% if follow_status %}
-                                <a class="btn btn-sm btn-outline-danger ml-5" href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
+                                <a class="btn btn-sm btn-danger ml-5" href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
 
                                 {%else%}
 

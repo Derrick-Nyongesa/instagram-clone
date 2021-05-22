@@ -160,7 +160,7 @@ def follow(request, to_follow):
         return redirect('user_profile', user_profile3.user.username)
 
 
-@login_required (login_url='/accounts/register/')
+@login_required (login_url='/accounts/login/')
 def like_post(request, id):
     image = Image.objects.get(id=id)
     image.likes = image.likes + 1
