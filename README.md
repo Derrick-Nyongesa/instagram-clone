@@ -48,7 +48,7 @@ git clone https://github.com/Derrick-Nyongesa/instagram-clone.git
 
 
 ## Entity relationship diagram 
-![ERD - Page 1](https://user-images.githubusercontent.com/78686755/119230224-fa265e00-bb23-11eb-9d25-d00e694dee72.jpeg)
+![ERD - Page 1](https://user-images.githubusercontent.com/78686755/119230514-327a6c00-bb25-11eb-83df-227d3cd58ee4.jpeg)
 
 
 
