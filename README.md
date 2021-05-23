@@ -20,6 +20,9 @@ This is a replica of the popular social site instagram where people share their 
 * Follow other users and see their pictures on my timeline.  
 
 
+## MOCKUP DESIGN
+![Mock Design](https://user-images.githubusercontent.com/78686755/119264148-974bca00-bbea-11eb-857f-9e125ccc60a6.jpg)
+
 ## Project setup instructions
 1. Pull project from github Repository.
 
@@ -60,6 +63,10 @@ git clone https://github.com/Derrick-Nyongesa/instagram-clone.git
 
 ## Known Bugs  
 * The Image upload may not work properly, if you encounter an error, reload the page and upload again. 
+
+
+##  Live Link  
+ Click [View Site](https://derrick-instagram-clone.herokuapp.com/)  to visit the site
 
 ## Contact Information 
 Any query? Contact me at [nyongesaderrick@gmail.com]
