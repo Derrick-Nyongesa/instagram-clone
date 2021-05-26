@@ -18,16 +18,11 @@
                                 <span class="mr-3 text-secondary username">{{ user_prof.username }}</span>
                                 {% if follow_status %}
                                 <a class="btn btn-sm btn-danger ml-5" href="{% url 'unfollow' user_prof.profile.id %}">Unfollow</a>
-
-                                {%else%}
-
+                                {%else%
                                 <a class="btn btn-sm btn-primary ml-5" href="{% url 'follow' user_prof.profile.id %}">Follow</a>
                                 {% endif %}
-                
-                                
                             </div>
                         </div>
-
                         <div class="post-details mt-3 mb-3">
                             <span class="mr-5 posts"><strong>{{user_posts.count}}</strong> Posts</span>
                             <span class="mr-5 posts"> <strong>{{ user_prof.profile.followers.count }}</strong> followers</span>
@@ -49,20 +44,16 @@
                     <div class="card-body parent ">
                         <div class="im">
                             {% cloudinary image.image format="jpg" width=300 height=200 crop="" %}
-                        
                         <p id="overlay"class="text"> 
                             <i class="fas fa-heart" style="color:white; font-size: 18"></i> 
                             <span style="color: white">{{image.likes.count}}</span>
                              <i class="fas fa-comment ml-4" style="color: white"></i> <span style="color: white">{{image.comments.count}}</span></p>
-                    
                             </div>
                             </div>
                 </div>
             </div>
-        
         {% endfor %}
         </div>
-        
     </div>
 </div>
 

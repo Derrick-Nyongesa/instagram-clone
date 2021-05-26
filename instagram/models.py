@@ -49,7 +49,6 @@ class Image(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE,  null=True, related_name='posts')
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='posts')
-    #likes = models.ManyToManyField(User, related_name='likes', blank=True, )
     likes = models.IntegerField(default=0)
 
     class Meta:
@@ -82,19 +81,6 @@ class Image(models.Model):
 
     def __str__(self):
         return f'{self.user.username if self.user else self.name} Image'
-
-
-#class Comment(models.Model):
-    #comment = models.TextField()
-    #image = models.ForeignKey(Image, on_delete=models.CASCADE,default='', related_name='comments')
-    #profile = models.ForeignKey(Profile, on_delete=models.CASCADE,default='', related_name='comments')
-    #date_created = models.DateTimeField(auto_now_add=True, null=True)
-
-    #def __str__(self):
-        #return f'{self.user.name} Image'
-
-    #class Meta:
-        #ordering = ["-pk"]
 
 
 class Comment(models.Model):

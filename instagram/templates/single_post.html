@@ -13,7 +13,6 @@
                 {% cloudinary image.user.profile.profile_photo format="jpg" width=45 height=45 crop="fill" %}
                      <a href="{% url 'user_profile' image.user.username %}" class="mt-4 user">{{image.user.username | title}}</a>
                      <div class="caption"><p><strong>{{image.user.username|title}}</strong> {{image.caption}}</p></div>
-
                 <hr style="width:96%">
                 {% for comment in image.comments.all %}
                 <div class="comment">
@@ -24,7 +23,6 @@
                 <p class="ml-3">No comments here yet</p>
                 {% endfor %}
                 <hr style="width:96%; margin-top:84%;">
-                
                 <form class="form" action="" method="post" novalidate>
                     {% csrf_token %}
                     <div class="row">
@@ -35,8 +33,6 @@
                             <button type="submit" class="btn btn-info" style="margin-top:27px; margin-left:-10px">post</button>
                         </div>
                     </div>
-
-
                 </form>
             </div>
             <div class="col-md-1"></div>

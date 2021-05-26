@@ -34,15 +34,7 @@ def index(request):
 
 
 @login_required(login_url='login')
-#def profile(request, username):
-    #current_user = request.user
-    #profile = Profile.objects.get_or_create(user_id=current_user.id)
-    #images = Image.objects.all().filter(profile_id=current_user.id)
-   
-    #return render(request, 'profile.html', {'images':images, 'profile':profile})
 def profile(request, username):
-    #current_user = request.user
-    #images = Image.objects.all().filter(profile_id=current_user.id)
     images = request.user.posts.all()
     if request.method == 'POST':
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -105,8 +97,7 @@ def user_profile(request, username):
 def post_comment(request, id):
     image = get_object_or_404(Image, pk=id)
     is_liked = False
-    # if image.likes.filter(id=request.user.id).exists():
-    #     is_liked = True
+    
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -121,7 +112,6 @@ def post_comment(request, id):
         'image': image,
         'form': form,
         'is_liked': is_liked,
-    #    'total_likes': image.total_likes()
     }
     return render(request, 'single_post.html', params)
 
@@ -159,16 +149,12 @@ def follow(request, to_follow):
         follow_s.save()
         return redirect('user_profile', user_profile3.user.username)
 
-
 @login_required (login_url='/accounts/login/')
 def like_post(request, id):
     image = Image.objects.get(id=id)
     image.likes = image.likes + 1
     image.save()
     return redirect('index')
-
-
-
 
 def single_image_like(request, id):
     image = Image.objects.get(id=id)

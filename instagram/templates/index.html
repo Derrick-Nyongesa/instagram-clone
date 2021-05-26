@@ -10,11 +10,9 @@
         <div class="col-md-1"></div>
         <div class="col-md-7">
             <div class="row">
-                
                 <button class="btn btn-primary ml-4 mb-3 upload" data-toggle="modal" data-target="#imageUpload" >
                     Upload Image
                 </button>
-                
                 <div class="modal fade" id="imageUpload" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -54,21 +52,15 @@
                   <span class="ml-4 mb-1"><strong>{{image.likes}} Likes</strong></span>
                   <div class="caption"><p><strong>{{image.user.username|title}}</strong> {{image.caption}}</p></div>
               </div>
-                
                 <div class="iconic ml-2">
-                    
-                        
                         <a href="{% url 'singleImageLike' image.id%}" class="btn btn-danger btn-md">
                             <span class="glyphicon glyphicon-heart">Like</span> 
                           </a>
-                    
                     <a href="{% url 'comment' image.id %}" class="btn-lg"><span class="glyphicon glyphicon-comment iconns"></span>
                     </a>
                 </div>
-                
                 <span class="text-secondary ml-4 viewall"><a href="{% url 'comment' image.id %}" class="viewall">view all {{image.comments.count}} comment{{image.comments.count|pluralize}}</a></span>
                 <div class="allcomments mb-4">
-                    
                     <p class="text-secondary ml-4">{{image.date_created|timesince}}</p>
                 </div>
             </div>
@@ -107,15 +99,11 @@
 
                         {% endfor %}
                         </div>
-                        
                     </div>
                 </div>
                 <div class="col-md-2"></div>
             </div>
-
-
         </div>
-
     </div>
     <p class="text-center mt-5">All rights reserved. Derrick Nyongesa @ 2019</p>
 </div>
